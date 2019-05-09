@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="AccesoBD">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/AccesoBD.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/AcesoBD-javadoc.zip!/javadoc" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

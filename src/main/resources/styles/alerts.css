@@ -1,0 +1,85 @@
+/*CONFIRMATION*/
+.alert.confirmation.dialog-pane:header .header-panel {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: linear-gradient(to bottom, #337ab7 0px, #2b669a 100%);
+    -fx-border-color: #337ab7;
+}
+
+.alert.confirmation.dialog-pane:header .header-panel .label{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+}
+
+.alert.confirmation.dialog-pane .button{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #337ab7;
+    -fx-border-color: #2e6da4;
+}
+
+.alert.confirmation.dialog-pane .button:hover{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #286090;
+    -fx-border-color: #204d74;
+}
+
+
+
+/*ERROR*/
+.alert.error.dialog-pane:header .header-panel {
+    -fx-text-fill: #a94442;
+    -fx-fill: #a94442;
+    -fx-background-color: linear-gradient(to bottom, #f2dede 0px, #e7c3c3 100%);
+    -fx-border-color: #ebccd1;
+}
+
+.alert.error.dialog-pane:header .header-panel .label{
+    -fx-text-fill: #a94442;
+    -fx-fill: #a94442;
+}
+
+.alert.error.dialog-pane .button{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #d9534f;
+    -fx-border-color: #d43f3a;
+}
+
+.alert.error.dialog-pane .button:hover{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #c9302c;
+    -fx-border-color: #ac2925;
+}
+
+
+
+
+/*INFORMATION*/
+.alert.information.dialog-pane:header .header-panel {
+    -fx-text-fill: #31708f;
+    -fx-fill: #31708f;
+    -fx-background-color: linear-gradient(to bottom, #d9edf7 0px, #b9def0 100%);
+    -fx-border-color: #bce8f1;
+}
+
+.alert.information.dialog-pane:header .header-panel .label{
+    -fx-text-fill: #31708f;
+    -fx-fill: #31708f;
+}
+
+.alert.information.dialog-pane .button{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #5bc0de;
+    -fx-border-color: #46b8da;
+}
+
+.alert.information.dialog-pane .button:hover{
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #31b0d5;
+    -fx-border-color: #269abc;
+}

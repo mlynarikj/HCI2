@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<BorderPane prefHeight="700" prefWidth="700" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+            fx:controller="common.MainWindowController" styleClass="panel, panel-primary">
+    <center>
+        <Label text="%intro" styleClass="h1"/>
+    </center>
+    <top>
+        <ToolBar prefWidth="600.0" styleClass="panel-heading">
+            <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#session" text="%session"/>
+            <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#groups" text="%groups"/>
+            <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#templates" text="%templates"/>
+        </ToolBar>
+    </top>
+</BorderPane>
