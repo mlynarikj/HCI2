@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
-<BorderPane prefHeight="700" prefWidth="700" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-            fx:controller="templates.Templates" styleClass="panel, panel-primary">
+<?import javafx.scene.layout.*?>
 
-    <top>
-        <ToolBar prefWidth="600.0" styleClass="panel-heading">
-            <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#session" text="%session"/>
-            <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#groups" text="%groups"/>
-            <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#templates" text="%templates"/>
-        </ToolBar>
-    </top>
+<BorderPane styleClass="panel-primary, panel" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="templates.Templates">
+  <center>
+    <TableView id="tableView" fx:id="templateTable" prefHeight="-1.0" prefWidth="-1.0">
+      <columns>
+        <TableColumn text="%code" fx:id="code" />
+        <TableColumn resizable="true" text="%numberOfExercises" fx:id="nExercises" />
+      </columns>
+    </TableView>
+  </center>
+  <right>
+    <VBox prefHeight="201.0" prefWidth="160.0" spacing="10.0">
+      <padding>
+        <Insets top="10.0" />
+      </padding>
+      <Button fx:id="createTemplate" mnemonicParsing="false" onMouseClicked="#createTemplate" prefWidth="350.0" text="%template.create" />
+      <Button fx:id="viewDetails" mnemonicParsing="false" onMouseClicked="#viewDetails" prefWidth="350.0" text="%template.viewDetails" />
+    </VBox>
+  </right>
+  <top>
+    <ToolBar styleClass="panel-heading">
+      <items>
+        <Button id="patients" fx:id="sessions" mnemonicParsing="false" onMouseClicked="#session" styleClass="btn-success" text="%session" />
+        <Button id="doctors" fx:id="groups" mnemonicParsing="false" onMouseClicked="#groups" styleClass="btn-success" text="%groups" />
+        <Button id="appointments" fx:id="templates" mnemonicParsing="false" onMouseClicked="#templates" styleClass="btn-success" text="%templates" />
+      </items>
+    </ToolBar>
+  </top>
 </BorderPane>

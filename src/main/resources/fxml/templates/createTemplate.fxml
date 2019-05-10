@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="panel-primary, panel" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="templates.CreateTemplate">
+  <bottom>
+    <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
+      <children>
+        <Button fx:id="save" mnemonicParsing="false" onMouseClicked="#save" styleClass="btn-primary" text="%save" />
+        <Button fx:id="cancel" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#cancel" text="%cancel" />
+      </children>
+      <padding>
+        <Insets right="20.0" />
+      </padding>
+    </HBox>
+  </bottom>
+  <center>
+    <GridPane alignment="CENTER">
+      <children>
+        <Label text="%code" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <font>
+            <Font name="System Bold" size="18.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label font="$x1" text="%Warming up time" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label font="$x1" text="%Number of excersises" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label font="$x1" text="%Working time" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField id="dni" fx:id="code" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField id="name" fx:id="warmTime" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField id="surname" fx:id="nExercises" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField id="telephone" fx:id="workTime" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label font="$x1" text="%Resting time" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Label font="$x1" text="%Circuit repetitions" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Label font="$x1" text="%Rest time between circuits" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <TextField id="telephone" fx:id="restTime" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <TextField id="telephone" fx:id="cRepetitions" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <TextField id="telephone" fx:id="cRest" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </center>
+  <top>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="panel-heading" BorderPane.alignment="CENTER">
+      <children>
+        <Label contentDisplay="LEFT" text="%createTemplate.templateForm" textFill="BLACK" textOverrun="CENTER_ELLIPSIS">
+          <font>
+            <Font name="System Bold" size="22.0" />
+          </font>
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+        </Label>
+      </children>
+    </HBox>
+  </top>
+</BorderPane>

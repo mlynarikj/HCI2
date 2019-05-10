@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="386.0" prefWidth="588.0" styleClass="panel-primary, panel" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="templates.viewDetailsTemplate">
+  <bottom>
+    <HBox alignment="CENTER_RIGHT" minHeight="74.0" prefHeight="74.0" prefWidth="587.9999000000025" BorderPane.alignment="CENTER">
+      <Button fx:id="cancel" mnemonicParsing="false" onMouseClicked="#cancel" text="%cancel">
+        <HBox.margin>
+          <Insets right="40.0" />
+        </HBox.margin>
+      </Button>
+    </HBox>
+  </bottom>
+  <center>
+    <GridPane prefHeight="329.0" prefWidth="570.0" vgap="10.0">
+      <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="SOMETIMES" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="67.0" prefHeight="67.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="67.0" prefHeight="67.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="67.0" prefHeight="67.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <Label text="%code" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <font>
+          <Font name="System Bold" size="18.0" fx:id="x1" />
+        </font>
+      </Label>
+      <Label font="$x1" text="%nExercises" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+      <Label font="$x1" text="%warmTime" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+      <Label font="$x1" text="%workTime" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+      <Label id="dni" fx:id="code" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <Label id="name" fx:id="warmTime" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label id="surname" fx:id="nExercises" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label id="telephone" fx:id="workTime" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label alignment="CENTER_RIGHT" font="$x1" text="%restCircuit" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+      <Label font="$x1" text="%restTime" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+      <Label font="$x1" text="%nCircuit" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+      <Label id="dni" fx:id="restTime" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label id="dni" fx:id="nCircuit" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label id="dni" fx:id="restCircuit" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    </GridPane>
+  </center>
+  <right>
+    <VBox alignment="CENTER" prefWidth="144.0" />
+  </right>
+  <top>
+    <HBox alignment="CENTER" prefHeight="81.0" prefWidth="588.0" styleClass="panel-heading">
+      <children>
+        <Label text="%template.viewDetails.title">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Label>
+      </children>
+    </HBox>
+  </top>
+</BorderPane>
