@@ -5,4 +5,6 @@ public class Constants {
     public static final String SESSION = "/fxml/sessions/session.fxml";
     public static final String GROUPS = "/fxml/groups/groups.fxml";
     public static final String TEMPLATES = "/fxml/templates/templates.fxml";
+    public static final String NEW_GROUP = "/fxml/groups/newGroup.fxml";
+    public static final String DETAIL_GROUP = "/fxml/groups/detailGroup.fxml";
 }

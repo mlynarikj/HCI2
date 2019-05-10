@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="700" prefWidth="700" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="groups.Groups" styleClass="panel, panel-primary">
 
@@ -13,4 +15,24 @@
             <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#templates" text="%templates"/>
         </ToolBar>
     </top>
+
+    <center>
+        <TableView fx:id="groupTable" prefHeight="408.0" prefWidth="250.0">
+            <columns>
+                <TableColumn text="%code" fx:id="code"/>
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <VBox alignment="TOP_CENTER" prefHeight="408.0" prefWidth="200.0" spacing="10.0" styleClass="panel-body">
+            <padding>
+                <Insets top="10.0"/>
+            </padding>
+            <Button styleClass="btn-primary" fx:id="add" mnemonicParsing="false" prefWidth="350" onMouseClicked="#add" text="%group.add"/>
+            <Button styleClass="btn-info" fx:id="view" mnemonicParsing="false" prefWidth="350" onMouseClicked="#view"
+                    text="%group.view"/>
+            <Button styleClass="btn-success" fx:id="modify" mnemonicParsing="false" prefWidth="350" onMouseClicked="#modify"
+                    text="%group.modify"/>
+        </VBox>
+    </right>
 </BorderPane>
