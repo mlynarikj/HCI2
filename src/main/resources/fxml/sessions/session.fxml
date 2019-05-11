@@ -3,6 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="700" prefWidth="700" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="sessions.Session" styleClass="panel, panel-primary">
 
@@ -13,4 +16,23 @@
             <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#templates" text="%templates"/>
         </ToolBar>
     </top>
+    <center>
+        <VBox alignment="CENTER" spacing="35">
+            <padding>
+                <Insets left="20" right="20"/>
+            </padding>
+            <Label text="%group" styleClass="h1"/>
+            <ChoiceBox fx:id="group" styleClass="split-menu-btn-info"/>
+            <Label text="%session.type" styleClass="h1"/>
+            <ChoiceBox fx:id="template" styleClass="split-menu-btn-info"/>
+        </VBox>
+        <!--choose exercise-->
+    </center>
+    <bottom>
+        <!--start session-->
+        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
+
+            <Button fx:id="start" onMouseClicked="#start" text="%start" styleClass="btn-primary, btn-lg"/>
+        </HBox>
+    </bottom>
 </BorderPane>

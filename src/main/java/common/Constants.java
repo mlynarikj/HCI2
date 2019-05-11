@@ -10,4 +10,5 @@ public class Constants {
     public static final String VIEW_DETAILS_TEMPLATE = "/fxml/templates/viewDetailsTemplate.fxml";
     public static final String NEW_GROUP = "/fxml/groups/newGroup.fxml";
     public static final String DETAIL_GROUP = "/fxml/groups/detailGroup.fxml";
+    public static final String SESSION_RUNNING = "/fxml/sessions/sessionRunning.fxml";
 }
