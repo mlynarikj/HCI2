@@ -12,20 +12,22 @@
     <!--Buttons to control the session -->
     <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
       <!--RESTART-->
-      <Button onMouseClicked="#restart" prefWidth="200.0" styleClass="btn-info" text="%restart" />
+      <Button fx:id="restart" onMouseClicked="#restart" prefWidth="200.0" styleClass="btn-info" text="%restart" />
       <!--PAUSE-->
       <Button fx:id="pause" onMouseClicked="#pause" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-border-radius: 40;" styleClass="btn-primary, btn-lg" text="||" />
       <!--ADVANCE-->
-      <Button onMouseClicked="#advance" prefWidth="200.0" styleClass="btn-info" text="%advance" />
+      <Button fx:id="advance" onMouseClicked="#advance" prefWidth="200.0" styleClass="btn-info" text="%advance" />
     </HBox>
   </bottom>
   <center>
     <VBox alignment="CENTER">
       <!--The actual progress of session-->
       <!--TIME LEFT-->
+      <Label fx:id="interval" styleClass="h1"/>
+      <Label fx:id="exerciseNumber" styleClass="h2"/>
       <Label fx:id="timeLeft" styleClass="h1" text="00:00" />
       <!--PROGRESS BAR????-->
-      <ProgressBar fx:id="progressBar" progress="0.0" />
+      <ProgressBar fx:id="progressBar" progress="0.0"/>
     </VBox>
   </center>
   <top>

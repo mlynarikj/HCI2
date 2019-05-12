@@ -27,6 +27,7 @@ public class Session extends MainWindowController {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
         group.setItems(FXCollections.observableList(gym.getGrupos()));
+        template.setItems(FXCollections.observableList(gym.getTiposSesion()));
         group.setConverter(new StringConverter<Grupo>() {
             @Override
             public String toString(Grupo object) {
@@ -37,9 +38,6 @@ public class Session extends MainWindowController {
             public Grupo fromString(String string) {
                 return gym.getGrupos().stream().filter(p -> p.getCodigo().equals(string)).findFirst().get();
             }
-        });
-        group.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            template.getSelectionModel().select(newValue.getDefaultTipoSesion());
         });
         template.setConverter(new StringConverter<SesionTipo>() {
             @Override
@@ -53,11 +51,24 @@ public class Session extends MainWindowController {
             }
         });
 
+        group.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue.getDefaultTipoSesion() != null) {
+                template.getSelectionModel()
+                        .select(
+                                template.getItems()
+                                        .stream()
+                                        .filter(p -> p.getCodigo().equals(newValue.getDefaultTipoSesion().getCodigo()))
+                                        .findFirst()
+                                        .get());
+            } else {
+                template.getSelectionModel().selectFirst();
+            }
+        });
         start.disableProperty().bind(
                 Bindings.or(
                         Bindings.equal(-1, group.getSelectionModel().selectedIndexProperty()),
                         Bindings.equal(-1, template.getSelectionModel().selectedIndexProperty())));
-        template.setItems(FXCollections.observableList(gym.getTiposSesion()));
 
     }
 
