@@ -14,6 +14,8 @@ import modelo.Grupo;
 import modelo.Sesion;
 import modelo.SesionTipo;
 
+import javax.sound.sampled.*;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,6 +49,8 @@ public class SessionRunning extends MainWindowController {
 
     private int stage = 0;
     private int circuit = 0;
+    private Clip clip;
+
 
     public void initGroup(Grupo value) {
         group = value;
@@ -66,6 +70,14 @@ public class SessionRunning extends MainWindowController {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
 
+        try {
+            clip = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                    getClass().getResourceAsStream("/sounds/metronome.wav"));
+            clip.open(inputStream);
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
         session = new Sesion();
         session.setFecha(LocalDateTime.now());
 
@@ -76,6 +88,9 @@ public class SessionRunning extends MainWindowController {
             @Override
             protected void succeeded() {
                 super.succeeded();
+                if (currentTime + 3 >= finalTime && !clip.isRunning()) {
+                    playSound();
+                }
                 if (currentTime >= finalTime) {
                     cancel();
                     nextStage();
@@ -101,6 +116,11 @@ public class SessionRunning extends MainWindowController {
         service.setPeriod(Duration.seconds(1));
 
         timeLeft.textProperty().bind(service.lastValueProperty());
+    }
+
+    private void playSound() {
+        clip.start();
+        clip.setFramePosition(0);
     }
 
     private void nextStage() {
@@ -154,7 +174,7 @@ public class SessionRunning extends MainWindowController {
         service.restart();
     }
 
-    private void setup(){
+    private void setup() {
         currentTime = 0;
         stage = 0;
         circuit = 0;
