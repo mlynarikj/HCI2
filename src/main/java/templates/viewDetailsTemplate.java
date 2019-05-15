@@ -38,6 +38,6 @@ public class viewDetailsTemplate extends MainWindowController {
     }
 
     public void cancel(MouseEvent mouseEvent){
-        loadScene(Constants.VIEW_DETAILS_TEMPLATE);
+        loadScene(Constants.TEMPLATES);
     }
 }

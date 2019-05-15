@@ -16,12 +16,12 @@
     </TableView>
   </center>
   <right>
-    <VBox prefHeight="201.0" prefWidth="160.0" spacing="10.0">
+    <VBox prefHeight="201.0" prefWidth="160.0" spacing="10.0" styleClass="panel-body">
       <padding>
         <Insets top="10.0" />
       </padding>
-      <Button fx:id="createTemplate" mnemonicParsing="false" onMouseClicked="#createTemplate" prefWidth="350.0" text="%template.create" />
-      <Button fx:id="viewDetails" mnemonicParsing="false" onMouseClicked="#viewDetails" prefWidth="350.0" text="%template.viewDetails" />
+      <Button styleClass="btn-primary" fx:id="createTemplate" mnemonicParsing="false" onMouseClicked="#createTemplate" prefWidth="350.0" text="%template.create" />
+      <Button styleClass="btn-info" fx:id="viewDetails" mnemonicParsing="false" onMouseClicked="#viewDetails" prefWidth="350.0" text="%template.viewDetails" />
     </VBox>
   </right>
   <top>
