@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<BorderPane prefHeight="700.0" prefWidth="700.0" styleClass="panel, panel-primary" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sessions.SessionRunning">
-  <bottom>
-    <!--Buttons to control the session -->
-    <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
-      <!--RESTART-->
-      <Button fx:id="restart" onMouseClicked="#restart" prefWidth="200.0" styleClass="btn-info" text="%restart" />
-      <!--PAUSE-->
-      <Button fx:id="pause" onMouseClicked="#pause" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-border-radius: 40;" styleClass="btn-primary, btn-lg" text="||" />
-      <!--ADVANCE-->
-      <Button fx:id="advance" onMouseClicked="#advance" prefWidth="200.0" styleClass="btn-info" text="%advance" />
-    </HBox>
-  </bottom>
-  <center>
-    <VBox alignment="CENTER">
-      <!--The actual progress of session-->
-      <!--TIME LEFT-->
-      <Label fx:id="interval" styleClass="h1"/>
-      <Label fx:id="exerciseNumber" styleClass="h2"/>
-      <Label fx:id="timeLeft" styleClass="h1" text="00:00" />
-      <!--PROGRESS BAR????-->
-      <ProgressBar fx:id="progressBar" progress="0.0"/>
-    </VBox>
-  </center>
-  <top>
-    <ToolBar prefWidth="600.0" styleClass="panel-heading">
-      <Button mnemonicParsing="false" onMouseClicked="#session" styleClass="btn-success" text="%session" />
-      <Button mnemonicParsing="false" onMouseClicked="#groups" styleClass="btn-success" text="%groups" />
-      <Button mnemonicParsing="false" onMouseClicked="#templates" styleClass="btn-success" text="%templates" />
-    </ToolBar>
-  </top>
+<BorderPane prefHeight="700.0" prefWidth="700.0" styleClass="panel, panel-primary" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="sessions.SessionRunning">
+    <bottom>
+        <!--Buttons to control the session -->
+        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
+            <!--RESTART-->
+            <Button fx:id="restart" onMouseClicked="#restart" prefWidth="150.0" styleClass="btn-info" text="%restart"/>
+            <!--PAUSE-->
+            <Button fx:id="pause" onMouseClicked="#pause" prefHeight="60.0" prefWidth="60.0"
+                    style="-fx-font-weight: bold; -fx-font-size: 25; -fx-background-radius: 40; -fx-border-radius: 40;"
+                    styleClass="btn-primary, btn-lg"
+                    text="||"/>
+            <!--ADVANCE-->
+            <Button fx:id="advance" onMouseClicked="#advance" prefWidth="150.0" styleClass="btn-info" text="%advance"/>
+        </HBox>
+    </bottom>
+    <center>
+        <VBox alignment="CENTER">
+            <!--The actual progress of session-->
+            <!--TIME LEFT-->
+            <Label fx:id="interval" styleClass="h1"/>
+            <Label fx:id="timeLeft" styleClass="h1" text="00:00"/>
+            <!--PROGRESS BAR????-->
+            <ProgressIndicator fx:id="progressIndicator" prefHeight="150" progress="0.0"/>
+        </VBox>
+    </center>
+    <left>
+        <VBox prefWidth="200" alignment="CENTER">
+            <Label fx:id="exerciseNumber" styleClass="h2" textAlignment="CENTER"/>
+        </VBox>
+    </left>
+    <right>
+        <VBox prefWidth="200" alignment="CENTER">
+            <Label fx:id="circuitNumber" styleClass="h2" textAlignment="CENTER"/>
+        </VBox>
+    </right>
+    <top>
+        <ToolBar prefWidth="600.0" styleClass="panel-heading">
+            <Button mnemonicParsing="false" onMouseClicked="#session" styleClass="btn-success" text="%session"/>
+            <Button mnemonicParsing="false" onMouseClicked="#groups" styleClass="btn-success" text="%groups"/>
+            <Button mnemonicParsing="false" onMouseClicked="#templates" styleClass="btn-success" text="%templates"/>
+        </ToolBar>
+    </top>
 </BorderPane>
