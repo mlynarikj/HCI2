@@ -50,7 +50,6 @@ public class Session extends MainWindowController {
                 return gym.getTiposSesion().stream().filter(p -> p.getCodigo().equals(string)).findFirst().get();
             }
         });
-
         group.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
             if (newValue.getDefaultTipoSesion() != null) {

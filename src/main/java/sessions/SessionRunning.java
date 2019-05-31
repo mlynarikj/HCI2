@@ -5,17 +5,21 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import modelo.Grupo;
 import modelo.Sesion;
 import modelo.SesionTipo;
 
-import javax.sound.sampled.*;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +27,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SessionRunning extends MainWindowController {
+    @FXML
+    private Label circuitNumber;
     @FXML
     private Button advance;
     @FXML
@@ -32,7 +38,7 @@ public class SessionRunning extends MainWindowController {
     @FXML
     private Label interval;
     @FXML
-    private ProgressBar progressBar;
+    private ProgressIndicator progressIndicator;
     @FXML
     private Label timeLeft;
     @FXML
@@ -41,7 +47,7 @@ public class SessionRunning extends MainWindowController {
     private SesionTipo template;
     private boolean paused = false;
     private long startTime;
-    private long currentTime = 0;
+    private long currentTime = -1;
     private long finalTime;
     private SimpleDoubleProperty time;
     private ScheduledService<String> service;
@@ -49,14 +55,11 @@ public class SessionRunning extends MainWindowController {
 
     private int stage = 0;
     private int circuit = 0;
-    private Clip clip;
+    private AudioClip clip;
 
 
     public void initGroup(Grupo value) {
         group = value;
-        ArrayList<Sesion> tmp = group.getSesiones();
-        tmp.add(session);
-        group.setSesiones(tmp);
     }
 
     public void initTemplate(SesionTipo value) {
@@ -69,27 +72,18 @@ public class SessionRunning extends MainWindowController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-
-        try {
-            clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                    getClass().getResourceAsStream("/sounds/metronome.wav"));
-            clip.open(inputStream);
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
-        }
+        clip = new AudioClip(getClass().getResource("/sounds/metronome.wav").toString());
         session = new Sesion();
         session.setFecha(LocalDateTime.now());
 
         time = new SimpleDoubleProperty(0);
-        progressBar.progressProperty().bind(time);
-
+        progressIndicator.progressProperty().bind(time);
         service = new ScheduledService<String>() {
             @Override
             protected void succeeded() {
                 super.succeeded();
-                if (currentTime + 3 >= finalTime && !clip.isRunning()) {
-                    playSound();
+                if (currentTime + 3 >= finalTime && !clip.isPlaying()) {
+                    signal();
                 }
                 if (currentTime >= finalTime) {
                     cancel();
@@ -118,13 +112,13 @@ public class SessionRunning extends MainWindowController {
         timeLeft.textProperty().bind(service.lastValueProperty());
     }
 
-    private void playSound() {
-        clip.start();
-        clip.setFramePosition(0);
+    private void signal() {
+        clip.play();
+        progressIndicator.setStyle("-fx-accent: red;");
     }
 
     private void nextStage() {
-
+        progressIndicator.setStyle("");
 //        LAST EXERCISE IN THE CIRCUIT
         if (stage == template.getNum_ejercicios() * 2 - 1) {
             circuit++;
@@ -132,6 +126,10 @@ public class SessionRunning extends MainWindowController {
         }
 //        THE LAST CIRCUIT
         if (circuit == template.getNum_circuitos()) {
+
+            ArrayList<Sesion> tmp = group.getSesiones();
+            tmp.add(session);
+            group.setSesiones(tmp);
             service.cancel();
             java.time.Duration duration = java.time.Duration.between(session.getFecha(), LocalDateTime.now());
             session.setDuracion(duration);
@@ -146,11 +144,33 @@ public class SessionRunning extends MainWindowController {
                     "\nTemplate: " +
                     template.getCodigo());
             timeLeft.setVisible(false);
-            progressBar.setVisible(false);
+            progressIndicator.setVisible(false);
             pause.setVisible(false);
             advance.setVisible(false);
             restart.setVisible(false);
             interval.setText("FINISHED");
+            CategoryAxis xAxis = new CategoryAxis();
+            NumberAxis yAxis = new NumberAxis();
+            BarChart<String, Number> bc = new BarChart<>(xAxis, yAxis);
+            bc.setTitle("Session Summary");
+            xAxis.setLabel("Session stage");
+            yAxis.setLabel("Time");
+            bc.setLegendVisible(false);
+
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            XYChart.Data real = new XYChart.Data<>("Real time", duration.getSeconds());
+            XYChart.Data work = new XYChart.Data<>("Work time", template.getNum_ejercicios() * template.getNum_circuitos() * template.getT_ejercicio() + template.getT_calentamiento());
+            XYChart.Data rest = new XYChart.Data<>("Rest time", (template.getNum_ejercicios() - 1) * template.getD_ejercicio() * template.getNum_circuitos() + (template.getNum_circuitos() - 1) * template.getD_circuito());
+            
+
+            series.getData().add(real);
+            series.getData().add(work);
+            series.getData().add(rest);
+            bc.getData().add(series);
+            ((VBox) interval.getParent()).getChildren().add(bc);
+            real.getNode().setStyle("-fx-bar-fill: blue;");
+            work.getNode().setStyle("-fx-bar-fill: red;");
+            rest.getNode().setStyle("-fx-bar-fill: green;");
             return;
         }
 
@@ -158,24 +178,26 @@ public class SessionRunning extends MainWindowController {
         if (stage == 0) {
 //          CIRCUIT REST
             finalTime = template.getD_circuito();
-            interval.setText("Rest between circuits");
+            interval.setText("Circuit rest");
         } else {
 //          REGULAR EXERCISE/REST
             finalTime = stage % 2 == 0 ? template.getD_ejercicio() : template.getT_ejercicio();
-            interval.setText(stage % 2 == 0 ? "Rest between exercises" : "Exercise");
+            interval.setText(stage % 2 == 0 ? "Rest" : "Exercise");
         }
-        currentTime = 0;
-        exerciseNumber.setText("Exercises: " + (stage + 1) / 2 + "/" + template.getNum_ejercicios() + "\nCircuits: " + (circuit + 1) + "/" + template.getNum_circuitos());
+        currentTime = -1;
+        exerciseNumber.setText("Exercises: \n" + (stage + 1) / 2 + "/" + template.getNum_ejercicios());
+        circuitNumber.setText("Circuits: \n" + (circuit + 1) + "/" + template.getNum_circuitos());
         service.restart();
     }
 
     public void restart(MouseEvent mouseEvent) {
+        clip.stop();
         setup();
         service.restart();
     }
 
     private void setup() {
-        currentTime = 0;
+        currentTime = -1;
         stage = 0;
         circuit = 0;
         pause.setText("||");
@@ -188,7 +210,9 @@ public class SessionRunning extends MainWindowController {
             finalTime = template.getT_ejercicio();
             stage++;
         }
-        exerciseNumber.setText("Exercises: " + (stage + 1) / 2 + "/" + template.getNum_ejercicios() + "\nCircuits: " + (circuit + 1) + "/" + template.getNum_circuitos());
+        progressIndicator.setStyle("");
+        exerciseNumber.setText("Exercises: \n" + (stage + 1) / 2 + "/" + template.getNum_ejercicios());
+        circuitNumber.setText("Circuits: \n" + (circuit + 1) + "/" + template.getNum_circuitos());
     }
 
     public void pause(MouseEvent mouseEvent) {
@@ -203,6 +227,7 @@ public class SessionRunning extends MainWindowController {
     }
 
     public void advance(MouseEvent mouseEvent) {
+        clip.stop();
         pause.setText("||");
         paused = false;
         nextStage();
