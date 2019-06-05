@@ -10,31 +10,33 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 public class CrossFit extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        AtomicReference<Locale> local = new AtomicReference<>(Locale.getDefault());
-        ButtonType english = new ButtonType("English");
-        ButtonType spanish = new ButtonType("Espa\u00F1ol");
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.getButtonTypes().setAll(english, spanish);
-        alert.setTitle("Choose language");
-        alert.getDialogPane().getStylesheets().add("styles/alerts.css");
-        alert.setHeaderText("Confirmation/Confirmaci\u00F3n");
-        alert.setContentText("Choose language\nElegir idioma");
-        alert.showAndWait().ifPresent(p -> {
-            if (p == spanish) {
-                local.set(new Locale("es"));
-            }
-        });
+//        AtomicReference<Locale> local = new AtomicReference<>(Locale.getDefault());
+//        ButtonType english = new ButtonType("English");
+//        ButtonType spanish = new ButtonType("Espa\u00F1ol");
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.getButtonTypes().setAll(english, spanish);
+//        alert.setTitle("Choose language");
+//        alert.getDialogPane().getStylesheets().add("styles/alerts.css");
+//        alert.setHeaderText("Confirmation/Confirmaci\u00F3n");
+//        alert.setContentText("Choose language\nElegir idioma");
+//        alert.showAndWait().ifPresent(p -> {
+//            if (p == spanish) {
+//                local.set(new Locale("es"));
+//            }
+//        });
 
-        ResourceBundle bundle = ResourceBundle.getBundle("languages", local.get());
+        ResourceBundle bundle = ResourceBundle.getBundle("languages", Locale.ENGLISH);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Constants.MAIN_WINDOW), bundle);
 
@@ -55,9 +57,15 @@ public class CrossFit extends Application {
             alert1.close();
         });
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
         primaryStage.setTitle(bundle.getString("mainWindow.title"));
         primaryStage.setScene(scene);
+        main.initStyles(new HashMap<String, Consumer<Scene>>(){{
+            put("Bootstrap", scene -> {scene.getStylesheets().clear();scene.getStylesheets().add("styles/tables.css");});
+            put("Flat red",scene -> {scene.getStylesheets().clear();scene.getStylesheets().add("styles/flatred.css");});
+            put("Sky", scene -> {scene.getStylesheets().clear();scene.getStylesheets().add("styles/sky.css");});
+        }
+        },"Bootstrap");
         primaryStage.show();
     }
 

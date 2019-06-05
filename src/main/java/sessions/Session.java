@@ -2,6 +2,7 @@ package sessions;
 
 import common.Constants;
 import common.MainWindowController;
+import common.MenuController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import modelo.SesionTipo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Session extends MainWindowController {
+public class Session extends MenuController {
     @FXML
     private Button start;
     @FXML

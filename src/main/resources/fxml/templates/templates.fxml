@@ -8,15 +8,15 @@
 
 <BorderPane styleClass="panel-primary, panel" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="templates.Templates">
   <center>
-    <TableView id="tableView" fx:id="templateTable" prefHeight="-1.0" prefWidth="-1.0">
+    <TableView id="tableView" fx:id="templateTable" prefHeight="408.0" prefWidth="250.0">
       <columns>
         <TableColumn text="%code" fx:id="code" />
-        <TableColumn resizable="true" text="%numberOfExercises" fx:id="nExercises" />
+        <TableColumn text="%numberOfExercises" fx:id="nExercises" />
       </columns>
     </TableView>
   </center>
   <right>
-    <VBox prefHeight="201.0" prefWidth="160.0" spacing="10.0" styleClass="panel-body">
+    <VBox prefHeight="201.0" prefWidth="200.0" spacing="10.0" styleClass="panel-body">
       <padding>
         <Insets top="10.0" />
       </padding>
@@ -25,12 +25,18 @@
     </VBox>
   </right>
   <top>
-    <ToolBar styleClass="panel-heading">
-      <items>
-        <Button id="patients" fx:id="sessions" mnemonicParsing="false" onMouseClicked="#session" styleClass="btn-success" text="%session" />
-        <Button id="doctors" fx:id="groups" mnemonicParsing="false" onMouseClicked="#groups" styleClass="btn-success" text="%groups" />
-        <Button id="appointments" fx:id="templates" mnemonicParsing="false" onMouseClicked="#templates" styleClass="btn-success" text="%templates" />
-      </items>
-    </ToolBar>
+    <GridPane styleClass="panel-heading, toolbar">
+      <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+        <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"/>
+
+      </columnConstraints>
+      <HBox alignment="CENTER_LEFT" prefWidth="300" spacing="10" GridPane.columnIndex="0">
+        <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#session" text="%session"/>
+        <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#groups" text="%groups"/>
+        <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#templates" text="%templates"/>
+      </HBox>
+      <ChoiceBox fx:id="style" GridPane.columnIndex="1" styleClass="split-menu-btn-info"/>
+    </GridPane>
   </top>
 </BorderPane>

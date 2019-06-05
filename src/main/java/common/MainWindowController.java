@@ -19,6 +19,7 @@ import modelo.Gym;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -34,18 +35,28 @@ public class MainWindowController implements Initializable {
     protected Gym gym;
 
     protected ResourceBundle bundle;
+    protected Map<String, Consumer<Scene>> styles;
+    protected String styleName;
+
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         gym = AccesoBD.getInstance().getGym();
         bundle = resources;
+
     }
 
     public void initStage(Stage primaryStage) {
         this.stage = primaryStage;
     }
 
+    public void initStyles(Map<String, Consumer<Scene>> styles, String st){
+        this.styles = styles;
+        styleName =st;
+    }
 
     @FXML
     protected void session(MouseEvent mouseEvent) {
@@ -61,6 +72,8 @@ public class MainWindowController implements Initializable {
     protected void templates(MouseEvent mouseEvent) {
         loadScene(Constants.TEMPLATES);
     }
+
+
 
 
     protected <T extends MainWindowController> T loadScene(String fxml, Consumer<T> function) {
@@ -80,10 +93,12 @@ public class MainWindowController implements Initializable {
         controller.initStage(stage);
         function.accept(controller);
 
+
         Scene scene = new Scene(root, stage.getScene().getWidth(), stage.getScene().getHeight());
-        scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
-        scene.getStylesheets().add("styles/tables.css");
+//        scene.getStylesheets().addAll(stage.getScene().getStylesheets());
         stage.setScene(scene);
+        controller.initStyles(styles, styleName);
+        styles.get(styleName).accept(scene);
         stage.show();
         return controller;
     }

@@ -48,11 +48,11 @@ public class CreateTemplate extends MainWindowController {
         template.setCodigo(code.getText());
         if(template.getCodigo().isEmpty())
         {
-            errors.append(bundle.getString(bundle.getString("alerts.emptycode")));
+            errors.append(bundle.getString("alerts.emptycode"));
         }
         if(codes.contains(template.getCodigo()))
         {
-            errors.append(bundle.getString(bundle.getString("alerts.notuniquecode")));
+            errors.append(bundle.getString("alerts.notuniquecode"));
         }
 
         if (warmTime.getText().matches("[0-9]+"))
@@ -61,7 +61,7 @@ public class CreateTemplate extends MainWindowController {
         }
         else
         {
-            errors.append(bundle.getString(bundle.getString("alerts.wrongwarmtime")));
+            errors.append(bundle.getString("alerts.wrongwarmtime"));
         }
 
         if (nExercises.getText().matches("[0-9]+"))
@@ -71,7 +71,7 @@ public class CreateTemplate extends MainWindowController {
         }
         else
         {
-            errors.append(bundle.getString(bundle.getString("alerts.wrongnexercises")));
+            errors.append(bundle.getString("alerts.wrongnexercises"));
         }
 
         if (workTime.getText().matches("[0-9]+"))
@@ -80,7 +80,7 @@ public class CreateTemplate extends MainWindowController {
         }
         else
         {
-            errors.append(bundle.getString(bundle.getString("alerts.wrongworkingtime")));
+            errors.append(bundle.getString("alerts.wrongworkingtime"));
         }
 
         if (restTime.getText().matches("[0-9]+"))
@@ -89,7 +89,7 @@ public class CreateTemplate extends MainWindowController {
         }
         else
         {
-            errors.append(bundle.getString(bundle.getString("alerts.wrongresttime")));
+            errors.append(bundle.getString("alerts.wrongresttime"));
         }
 
         if (cRepetitions.getText().matches("[0-9]+"))
@@ -98,7 +98,7 @@ public class CreateTemplate extends MainWindowController {
         }
         else
         {
-            errors.append(bundle.getString(bundle.getString("alerts.wrongncircuit")));
+            errors.append(bundle.getString("alerts.wrongncircuit"));
         }
 
         if (cRest.getText().matches("[0-9]+"))
@@ -107,13 +107,13 @@ public class CreateTemplate extends MainWindowController {
         }
         else
         {
-            errors.append(bundle.getString(bundle.getString("alerts.crest")));
+            errors.append(bundle.getString("alerts.crest"));
         }
 
         if(errors.length() != 0)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(bundle.getString(bundle.getString("alerts.invalidtemplate")));
+            alert.setTitle(bundle.getString("alerts.invalidtemplate"));
             alert.getDialogPane().getStylesheets().add("styles/alerts.css");
             alert.setContentText(errors.toString());
             alert.show();

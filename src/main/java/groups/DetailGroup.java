@@ -82,7 +82,7 @@ public class DetailGroup extends MainWindowController {
         XYChart.Series<String, Double> restTime = new XYChart.Series<>();
         restTime.setName("Rest time");
         XYChart.Series<String, Double> realTime = new XYChart.Series<>();
-        realTime.setName("Total time");
+        realTime.setName("Real time");
         xAxis.setLabel("Session");
         yAxis.setLabel("Minutes");
         xAxis.setGapStartAndEnd(choiceBox.getValue() == 1);

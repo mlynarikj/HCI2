@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane prefHeight="700" prefWidth="700" styleClass="panel, panel-primary" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groups.CreateUpdateGroup">
+<BorderPane prefHeight="700" prefWidth="700" styleClass="panel, panel-primary"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="groups.CreateUpdateGroup">
 
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="panel-heading">
-            <Label text="%groups.form" textFill="BLACK" textOverrun="CENTER_ELLIPSIS">
+            <Label text="%groups.form" textOverrun="CENTER_ELLIPSIS">
                 <font>
-                    <Font name="System Bold" size="22.0" />
+                    <Font name="System Bold" size="22.0"/>
                 </font>
             </Label>
         </HBox>
@@ -27,44 +20,44 @@
     <center>
         <GridPane alignment="CENTER_LEFT" hgap="10.0" vgap="10.0">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES"/>
+                <RowConstraints vgrow="SOMETIMES"/>
             </rowConstraints>
-            <Label alignment="CENTER_RIGHT" text="%code" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label alignment="TOP_RIGHT" text="%code" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <font>
-                    <Font name="System Bold Italic" size="18.0" fx:id="x1" />
+                    <Font name="System Bold Italic" size="18.0" fx:id="x1"/>
                 </font>
             </Label>
-            <TextField fx:id="code" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <TextArea fx:id="description" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label alignment="CENTER_RIGHT" font="$x1" text="%description" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="code" promptText="An identifier for group" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <TextArea fx:id="description" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label alignment="TOP_RIGHT" font="$x1" text="%description" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         </GridPane>
     </center>
     <left>
         <VBox spacing="20.0">
             <padding>
-                <Insets left="10.0" />
+                <Insets left="20.0"/>
             </padding>
         </VBox>
     </left>
     <right>
         <VBox spacing="20.0">
             <padding>
-                <Insets right="10.0" />
+                <Insets right="20.0"/>
             </padding>
         </VBox>
     </right>
     <bottom>
         <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="600.0" spacing="20.0">
             <padding>
-                <Insets right="20.0" />
+                <Insets right="20.0"/>
             </padding>
-            <Button mnemonicParsing="false" onMouseClicked="#save" styleClass="btn-primary" text="%save" />
-            <Button mnemonicParsing="false" onMouseClicked="#cancel" styleClass="btn-info" text="%cancel" />
+            <Button mnemonicParsing="false" onMouseClicked="#save" styleClass="btn-primary" text="%save"/>
+            <Button mnemonicParsing="false" onMouseClicked="#cancel" styleClass="btn-info" text="%cancel"/>
         </HBox>
     </bottom>
 </BorderPane>

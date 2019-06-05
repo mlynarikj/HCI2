@@ -2,6 +2,7 @@ package templates;
 
 import common.Constants;
 import common.MainWindowController;
+import common.MenuController;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +20,7 @@ import modelo.SesionTipo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Templates extends MainWindowController {
+public class Templates extends MenuController {
 
 
     @FXML

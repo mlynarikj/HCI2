@@ -30,19 +30,27 @@
     </center>
     <left>
         <VBox prefWidth="200" alignment="CENTER">
-            <Label fx:id="exerciseNumber" styleClass="h2" textAlignment="CENTER"/>
+            <Label fx:id="exerciseNumber" styleClass="h3" textAlignment="CENTER"/>
         </VBox>
     </left>
     <right>
         <VBox prefWidth="200" alignment="CENTER">
-            <Label fx:id="circuitNumber" styleClass="h2" textAlignment="CENTER"/>
+            <Label fx:id="circuitNumber" styleClass="h3" textAlignment="CENTER"/>
         </VBox>
     </right>
     <top>
-        <ToolBar prefWidth="600.0" styleClass="panel-heading">
-            <Button mnemonicParsing="false" onMouseClicked="#session" styleClass="btn-success" text="%session"/>
-            <Button mnemonicParsing="false" onMouseClicked="#groups" styleClass="btn-success" text="%groups"/>
-            <Button mnemonicParsing="false" onMouseClicked="#templates" styleClass="btn-success" text="%templates"/>
-        </ToolBar>
+        <GridPane styleClass="panel-heading, toolbar">
+            <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"/>
+
+            </columnConstraints>
+            <HBox alignment="CENTER_LEFT" prefWidth="300" spacing="10" GridPane.columnIndex="0">
+                <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#session" text="%session"/>
+                <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#groups" text="%groups"/>
+                <Button styleClass="btn-success" mnemonicParsing="false" onMouseClicked="#templates" text="%templates"/>
+            </HBox>
+            <ChoiceBox fx:id="style" GridPane.columnIndex="1" styleClass="split-menu-btn-info"/>
+        </GridPane>
     </top>
 </BorderPane>

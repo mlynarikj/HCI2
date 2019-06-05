@@ -2,6 +2,7 @@ package groups;
 
 import common.Constants;
 import common.MainWindowController;
+import common.MenuController;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -16,7 +17,7 @@ import modelo.Grupo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Groups extends MainWindowController {
+public class Groups extends MenuController {
 
     @FXML
     private TableView<Grupo> groupTable;
