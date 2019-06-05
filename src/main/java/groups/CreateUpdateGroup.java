@@ -21,8 +21,6 @@ public class CreateUpdateGroup extends MainWindowController {
 
     private Grupo group;
 
-    //TODO pass a group to choose between create and update since the form is the same
-
     public void initGroup(Grupo group) {
         this.group = group;
         code.setText(group.getCodigo());
@@ -42,16 +40,17 @@ public class CreateUpdateGroup extends MainWindowController {
         List<String> codes = gym.getGrupos().stream().map(Grupo::getCodigo).collect(Collectors.toList());
         group.setCodigo(code.getText());
         if (group.getCodigo().isEmpty()) {
-            errors.append(bundle.getString("emptyCode"));
+            errors.append(bundle.getString("alerts.emptycode"));
         }
         if (!prevCode.equals(group.getCodigo()) && codes.contains(group.getCodigo())) {
-            errors.append(bundle.getString("notUniqueCode"));
+            errors.append(bundle.getString("alerts.notuniquecode"));
         }
         group.setDescripcion(description.getText());
         if (errors.length() != 0) {
+            group = create?null:group;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.getDialogPane().getStylesheets().add("styles/alerts.css");
-            alert.setTitle(bundle.getString("alerts.doctor.invalid"));
+            alert.setTitle(bundle.getString("alerts.invalidgroup"));
             alert.setContentText(errors.toString());
             alert.show();
             return;
@@ -60,6 +59,18 @@ public class CreateUpdateGroup extends MainWindowController {
             ArrayList<Grupo> grupos = gym.getGrupos();
             grupos.add(group);
             gym.setGrupos(grupos);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.getDialogPane().getStylesheets().add("styles/alerts.css");
+            alert.setTitle(bundle.getString("alerts.groupcreated"));
+            alert.setContentText(bundle.getString("group") + " " + code.getText() + bundle.getString("created"));
+            alert.show();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.getDialogPane().getStylesheets().add("styles/alerts.css");
+            alert.setTitle(bundle.getString("alerts.groupchanged"));
+            alert.setContentText(bundle.getString("group") + " " + code.getText() + bundle.getString("changed"));
+            alert.show();
+
         }
         loadScene(Constants.GROUPS);
 
